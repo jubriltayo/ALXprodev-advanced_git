@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Check for directories without README.md
+missing_readme=0
+
+for dir in $(find . -type d); do
+    if [[ "$dir" != "./.git"* ]] && [[ "$dir" != "." ]]; then
+        if [[ ! -f "$dir/README.md" ]]; then
+	    echo "Directory '$dir' is missing a README.md file."
+	    missing_readme=1
+	fi
+    fi
+done
+
+if [[ $missing_readme -eq 1 ]]; then
+    echo "Commit aborted. All directories must have a README.md file."
+    exit 1
+fi
+

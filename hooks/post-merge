@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Check if we are on the main branch
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ "$branch" == "main" ]]; then
+    echo "Merge completed on branch: $branch" >> .git/hooks/merge.log
+    echo "Merge recorded in .git/hooks/merge.log"
+fi
+	
